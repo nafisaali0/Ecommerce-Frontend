@@ -41,7 +41,7 @@ const Header = () => {
                   aria-label="Search product here..."
                   aria-describedby="basic-addon2"
                 />
-                <span className="input-group-text py-3" id="basic-addon2">
+                <span className="input-group-text p-2" id="basic-addon2">
                   <BsSearch className="fs-5 text-white" />
                 </span>
               </div>
@@ -112,17 +112,17 @@ const Header = () => {
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li>
-                        <a className="dropdown-item text-white" href="#">
+                        <a className="dropdown-item text-white" href="/">
                           Action
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item text-white" href="#">
+                        <a className="dropdown-item text-white" href="/">
                           Another action
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item text-white" href="#">
+                        <a className="dropdown-item text-white" href="/">
                           Something else here
                         </a>
                       </li>
@@ -130,7 +130,7 @@ const Header = () => {
                   </div>
                 </div>
                 <div className="menu-links">
-                  <div className="d-flex align-items-center gap-15">
+                  <div className="d-flex align-items-center gap-30">
                     <NavLink className="link-text" to="/">
                       Home
                     </NavLink>
