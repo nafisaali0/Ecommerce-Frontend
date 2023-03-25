@@ -18,8 +18,8 @@ const Footer = () => {
                 <input
                   type="text"
                   className="form-control py-2"
-                  placeholder="Search product here..."
-                  aria-label="Search product here..."
+                  placeholder="Type Your Email"
+                  aria-label="Type Your Email"
                   aria-describedby="basic-addon2"
                 />
                 <span className="input-group-text p-2" id="basic-addon2">
