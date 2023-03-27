@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
-const ProductCart = () => {
+import { useLocation } from "react-router-dom";
+const ProductCart = (props) => {
+  const grid = props;
+  let location = useLocation();
   return (
-    <div className="col-3">
+    <div
+      className={`${location.pathname === "/store" ? `col-${grid}` : "col-3"}`}
+    >
       <Link className="product-cart position-relative">
         <div className="wishlist-icon position-absolute">
           <Link>
@@ -12,7 +17,11 @@ const ProductCart = () => {
         </div>
         <div className="product-image">
           <img src="/images/watch.jpg" className="img-fluid" alt="watch" />
-          <img src="/images/watch-02.avif" className="img-fluid" alt="watch-02" />
+          <img
+            src="/images/watch-02.avif"
+            className="img-fluid"
+            alt="watch-02"
+          />
         </div>
         <div className="product-details">
           <h6 className="brand">Rolex</h6>

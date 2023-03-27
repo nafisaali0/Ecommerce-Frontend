@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import BreadCrum from "../component/BreadCrum";
 import Meta from "../component/Meta";
 import ReactStars from "react-rating-stars-component";
+import ProductCart from "../component/Product'Cart";
 const Store = () => {
+
+  const [grid, setGrid] = useState(4);
   return (
     <>
       <Meta title={"Our Store"} />
@@ -226,7 +229,83 @@ const Store = () => {
                 </div>
               </div>
             </div>
-            <div className="col-9"></div>
+            <div className="col-9">
+              <div className="filter-sort-grid mb-4">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="d-flex align-items-center gap-10">
+                    <p className="mb-0 d-block" style={{ width: "100px" }}>
+                      Sort By
+                    </p>
+                    <select className="form-control form-select bg-light" id="">
+                      <option value="manual">Featured</option>
+                      <option value="best-selling" selected="selected">
+                        Best Selling
+                      </option>
+                      <option value="title-assending">
+                        Alphabetically, A-Z
+                      </option>
+                      <option value="title-dessending">
+                        Alphabetically, Z-A
+                      </option>
+                      <option value="price-assending">
+                        Price, Low to High
+                      </option>
+                      <option value="price-dessending">
+                        Price, Low to High
+                      </option>
+                      <option value="created-assending">
+                        Date, Old to New
+                      </option>
+                      <option value="created-dessending">
+                        Date, New to Old
+                      </option>
+                    </select>
+                  </div>
+
+                  <div className="d-flex align-items-center gap-10">
+                    <p className="total-product mb-0">21 Products</p>
+                    <div className="d-flex align-items-center gap-10 grid">
+                      <img
+                        onClick={() => {
+                          setGrid(3);
+                        }}
+                        src="images/gr4.svg"
+                        alt="grid"
+                        className="img-fluid d-block"
+                      />
+                      <img
+                        onClick={() => {
+                          setGrid(4);
+                        }}
+                        src="images/gr3.svg"
+                        alt="grid"
+                        className="img-fluid d-block"
+                      />
+                      <img
+                        onClick={() => {
+                          setGrid(6);
+                        }}
+                        src="images/gr2.svg"
+                        alt="grid"
+                        className="img-fluid d-block"
+                      />
+
+                      <img
+                        onClick={() => {
+                          setGrid(12);
+                        }}
+                        src="images/gr.svg"
+                        alt="grid"
+                        className="img-fluid d-block"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="product-list pb-5">
+                <ProductCart grid={grid}/>
+              </div>
+            </div>
           </div>
         </div>
       </div>
