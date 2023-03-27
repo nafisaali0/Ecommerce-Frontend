@@ -19,6 +19,12 @@ a {
   text-decoration: none;
   display: inline-block;
 }
+ul {
+  list-style-type: none;
+}
+li {
+  list-style: none;
+}
 .form-control {
   box-shadow: none;
   border-color: inherit;
@@ -236,7 +242,7 @@ footer:not(:first-child) {
 .product-cart:hover .action-bar {
   right: 15px;
 }
-.wishlist-icon{
+.wishlist-icon {
   top: 5%;
   right: 18px;
   transition: 0.3s;
@@ -254,19 +260,19 @@ footer:not(:first-child) {
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
 }
-.product-cart .product-image{
+.product-cart .product-image {
   height: 300px;
 }
-.product-cart .product-image>img{
+.product-cart .product-image > img {
   object-fit: contain;
 }
-.product-cart .product-image>img:last-child{
+.product-cart .product-image > img:last-child {
   display: none;
 }
-.product-cart:hover .product-image>img:nth-child(1){
+.product-cart:hover .product-image > img:nth-child(1) {
   display: none;
 }
-.product-cart:hover .product-image>img:last-child{
+.product-cart:hover .product-image > img:last-child {
   display: block;
 }
 
@@ -278,14 +284,51 @@ footer:not(:first-child) {
   font-size: 16px;
   color: var(--color-primary-4);
 }
-.product-details price {
+.product-details p {
   font-size: 16px;
   color: var(--color-primary-2);
 }
+/* Feture End */
 
-/* Specil Product Start */
-.special-product-cart{
-  padding:20px 10px;
+/* Famous Product Start */
+.famous-card img {
+  min-width: 300px;
+  max-height: 300px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.famous-product-content {
+  top: 10%;
+  left: 10%;
+}
+.famous-product-content h5 {
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+  line-height: 20px;
+  margin-bottom: 7px;
+  text-transform: uppercase;
+}
+.famous-product-content h6 {
+  font-size: 22px;
+  font-weight: 500;
+  color: white;
+  line-height: 20px;
+}
+.famous-product-content p {
+  font-size: 14px;
+  font-weight: 100;
+  color: white;
+  line-height: 20px;
+}
+/* Famous Product End */
+
+/* Special Product Start */
+.special-product-cart {
+  padding: 20px 10px;
   background-color: white;
   box-shadow: 0 0 10px var(--color-primary-4);
   border-radius: 10px;
@@ -293,9 +336,8 @@ footer:not(:first-child) {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  
 }
-
+/* Special Product End */
 
 /* brand Start */
 .brand-wrapper {
@@ -350,3 +392,85 @@ footer:not(:first-child) {
   color: var(--color-primary-4);
 }
 /* blog End */
+
+/* Our Store Start */
+.filter-cart {
+  background-color: white;
+  padding: 15px 15px 25px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.filter-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--color-primary-4);
+  margin: 10px 0;
+}
+.filter-cart > ul > li {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 30px;
+  color: var(--color-primary-4);
+  cursor: pointer;
+}
+.filter-cart .filter-sub-title {
+  margin: 20px 0;
+}
+.filter-cart .filter-sub-title p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: var(--color-primary-4);
+}
+.filter-cart .form-check-label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 30px;
+  color: var(--color-primary-4);
+  cursor: pointer;
+}
+.filter-cart .form-check-input:checked {
+  background-color: var(--color-primary-4);
+  border-color: var(--color-primary);
+}
+.filter-cart .form-check-input:focus {
+  box-shadow: none;
+  border-color: var(--color-primary);
+}
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.colors li {
+  height: 20px;
+  width: 20px;
+  background-color: #a3aeb5;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+.random-products:first-child {
+  border-bottom: 1px solid var(--color-primary-2);
+}
+.random-products {
+  margin: 10px 0;
+}
+.random-products h6 {
+  font-size: 14px;
+  color: var(--color-primary-5);
+}
+.random-products h5 {
+  font-size: 16px;
+  color: var(--color-primary-4);
+}
+.random-products p {
+  font-size: 16px;
+  color: var(--color-primary-2);
+}
