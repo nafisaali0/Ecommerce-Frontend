@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import BlogCart from "../component/BlogCart";
-import ProductCart from "../component/Product'Cart";
+import ProductCart from "../component/ProductCart";
 import SpecialProduct from "../component/SpecialProduct";
 const Home = () => {
   return (

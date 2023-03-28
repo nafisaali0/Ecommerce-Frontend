@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import BreadCrum from "../component/BreadCrum";
 import Meta from "../component/Meta";
 import ReactStars from "react-rating-stars-component";
-import ProductCart from "../component/Product'Cart";
+import ProductCart from "../component/ProductCart";
 const Store = () => {
 
   const [grid, setGrid] = useState(4);
+
   return (
     <>
       <Meta title={"Our Store"} />
@@ -303,7 +304,12 @@ const Store = () => {
                 </div>
               </div>
               <div className="product-list pb-5">
-                <ProductCart grid={grid}/>
+               <div className="d-flex flex-wrap gap-10">
+               <ProductCart grid={grid}/>
+               <ProductCart grid={grid}/>
+               <ProductCart grid={grid}/>
+               <ProductCart grid={grid}/>
+               </div>
               </div>
             </div>
           </div>
