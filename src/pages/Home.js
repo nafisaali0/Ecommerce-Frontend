@@ -342,10 +342,20 @@ const Home = () => {
             <div className="col-12">
               <h3 className="blog-heading">Our Latest Blogs</h3>
             </div>
+          </div>
+          <div className="row">
+          <div className="col-3">
             <BlogCart />
+            </div>
+          <div className="col-3">
             <BlogCart />
+            </div>
+          <div className="col-3">
             <BlogCart />
+            </div>
+          <div className="col-3">
             <BlogCart />
+            </div>
           </div>
         </div>
       </section>

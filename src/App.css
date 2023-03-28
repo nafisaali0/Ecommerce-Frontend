@@ -516,23 +516,60 @@ footer:not(:first-child) {
 .gr-3 {
   width: 24%;
 }
-.gr-12 .product-cart{
+.gr-12 .product-cart {
   display: flex;
   gap: 20px;
 }
-.gr-12 .product-image{
- height: auto;
+.gr-12 .product-image {
+  height: auto;
 }
-.gr-12 .action-bar{
-top: 15%;
+.gr-12 .action-bar {
+  top: 15%;
 }
-.gr-12 .product-details{
-padding: 25px 0;
+.gr-12 .product-details {
+  padding: 25px 0;
 }
-.gr-4 .product-image,.gr-6 .product-image {
+.gr-4 .product-image,
+.gr-6 .product-image {
   width: 100%;
 }
-.gr-4 .product-image img,.gr-6 .product-image img{
+.gr-4 .product-image img,
+.gr-6 .product-image img {
   margin: auto;
   display: block;
+}
+/* Our Store End */
+
+/* Contact Start */
+.contact-wrapper-info {
+  padding: 30px 20px;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  gap: 20px;
+}
+.contact-wrapper-info > div {
+  width: 48%;
+}
+.contact-title {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 35px;
+  text-align: left;
+  margin-top: 0;
+}
+.contact-wrapper-info form .form-control{
+  background-color: var(--color-primary-6);
+  border: transparent;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.contact-info address,.contact-info a,.contact-info p{
+  color: var(--color-primary-4);
 }
