@@ -3,6 +3,7 @@ import BreadCrum from "../component/BreadCrum";
 import Meta from "../component/Meta";
 import ReactStars from "react-rating-stars-component";
 import ProductCart from "../component/ProductCart";
+import Color from "../component/Color";
 const Store = () => {
 
   const [grid, setGrid] = useState(4);
@@ -88,17 +89,7 @@ const Store = () => {
                   <p>Colors</p>
                 </div>
                 <div>
-                  <ul className="colors ps-0">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                  </ul>
+                 <Color/>
                 </div>
 
                 <div className="filter-sub-title">
