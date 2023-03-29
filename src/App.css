@@ -687,13 +687,13 @@ footer:not(:first-child) {
   font-weight: 500;
   color: var(--color-primary-3);
 }
-.single-blog-cart h3{
+.single-blog-cart h3 {
   font-size: 28px;
   font-weight: 600;
   line-height: 22px;
   color: var(--color-primary-3);
 }
-.single-blog-cart p{
+.single-blog-cart p {
   font-size: 16px;
   font-weight: 500;
   color: var(--color-primary-2);
@@ -711,6 +711,53 @@ footer:not(:first-child) {
   font-size: 18px;
   font-weight: 600;
 }
-.image-blog{
+.image-blog {
   max-height: 500px;
+}
+
+/* Single-blog End */
+
+/* Privacy Policy,review Start */
+.policy,
+.description-cart {
+  padding: 30px 20px;
+  background-color: white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.policy h5,
+.review-cart h5,
+.description-cart h5 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-primary-4);
+}
+.policy p,
+.review-cart p,
+.description-cart p {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary-2);
+}
+.review-inner-wrapper {
+  padding: 30px;
+  background-color: white;
+}
+.review-cart {
+  border-bottom: 1px solid var(--color-primary-2);
+  padding-bottom: 20px;
+}
+.review-form h6 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-primary-4);
+  padding: 15px 0;
+}
+
+.review:not(:last-child) {
+  border-bottom: 1px solid var(--color-primary-2);
+  padding: 30px 0;
 }
