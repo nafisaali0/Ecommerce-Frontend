@@ -5,7 +5,7 @@ const Meta = (props) => {
     <>
      <Helmet>
         <meta charSet="utf-8" />
-        <title>{props.title}</title>
+        <title >{props.title}</title>
       </Helmet>
     </>
   )

@@ -11,7 +11,7 @@ const BlogCart = () => {
           <p className="date">1 March, 2023</p>
           <h5 className="title">Ramjan is not so far</h5>
           <p className="desc">Ramjanul karim is the month of purification</p>
-          <Link className="button">Read More</Link>
+          <Link to="/blog/:id" className="button">Read More</Link>
         </div>
       </div>
     

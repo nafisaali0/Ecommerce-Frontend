@@ -7,12 +7,12 @@ const BreadCrum = (props) => {
       <div className="container-xxl">
         <div className="row">
           <div className="col-12">
-            <p className="text-center mb-0">
+            <div className="text-style">
               <Link to="/" className="text-dark">
-                Home &nbsp;
+               <h5 className="font">Home &nbsp;</h5> 
               </Link>
-              / {title}
-            </p>
+              / <h6 className="font">{title}</h6>
+            </div>
           </div>
         </div>
       </div>

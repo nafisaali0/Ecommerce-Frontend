@@ -1,7 +1,7 @@
 import React from "react";
 import BreadCrum from "../component/BreadCrum";
 import Meta from "../component/Meta";
-const Signup = () => {
+const ResetPassword = () => {
   return (
     <>
       <Meta title={"Account"} />
@@ -11,32 +11,8 @@ const Signup = () => {
           <div className="row">
             <div className="col-12">
               <div className="login-cart">
-                <h3 className="login-title mb-4 text-center">Create Account</h3>
+                <h3 className="login-title mb-4 text-center">Reset Password</h3>
                 <form action="" className="d-flex flex-column gap-20">
-                  <div>
-                    <input
-                      name="name"
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter Your Name"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      name="email"
-                      type="email"
-                      className="form-control"
-                      placeholder="Enter Your Email"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      name="mobile"
-                      type="tel"
-                      className="form-control"
-                      placeholder="Enter Your Mobile Number"
-                    />
-                  </div>
                   <div>
                     <input
                       name="password"
@@ -45,10 +21,18 @@ const Signup = () => {
                       placeholder="Enter Your Password"
                     />
                   </div>
+                  <div>
+                    <input
+                      name="confpassword"
+                      type="password"
+                      className="form-control"
+                      placeholder="Enter Your Password"
+                    />
+                  </div>
 
                   <div className="d-flex justify-content-center gap-15 align-items-center mt-2">
                     <button className="button border-0" type="submit">
-                      Sign Up
+                      Confirm
                     </button>
                   </div>
                 </form>
@@ -61,4 +45,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default ResetPassword;
