@@ -6,6 +6,8 @@ import ReactStars from "react-rating-stars-component";
 import ReactImageZoom from "react-image-zoom";
 import Color from "../component/Color";
 import { Link } from "react-router-dom";
+import { BiGitCompare } from "react-icons/bi";
+import { AiOutlineHeart } from "react-icons/ai";
 const SingleProduct = () => {
   const props = {
     width: 800,
@@ -14,6 +16,15 @@ const SingleProduct = () => {
     img: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg",
   };
   const [orderProduct, setOrderProduct] = useState(true);
+  const copyToClipboard = (text) => {
+    console.log('text', text)
+    var textField = document.createElement('textarea')
+    textField.innerText = text
+    document.body.appendChild(textField)
+    textField.select()
+    document.execCommand('copy')
+    textField.remove()
+  }
   return (
     <>
       <Meta title={"Dynamic Title here"} />
@@ -95,7 +106,7 @@ const SingleProduct = () => {
                       <h3 className="product-heading">Avaibility :</h3>{" "}
                       <p className="product-data">In Stock</p>
                     </div>
-                    <div className="d-flex flex-column   gap-10 my-2">
+                    <div className="d-flex flex-column gap-10 my-2">
                       <h3 className="product-heading">Size :</h3>{" "}
                       <div className="d-flex flex-wrap gap-15 ">
                         <span className="badge border-1 border border-secondary bg-white text-dark py-2">
@@ -112,7 +123,7 @@ const SingleProduct = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="d-flex flex-column   gap-10 my-2">
+                    <div className="d-flex flex-column gap-10 my-2">
                       <h3 className="product-heading">Color :</h3> <Color />
                     </div>
                     <div className="d-flex gap-15 my-2">
@@ -140,6 +151,33 @@ const SingleProduct = () => {
                           Buy IT Now
                         </Link>
                       </div>
+                    </div>
+                    <div className="d-flex gap-15 align-items-center my-3">
+                      <a href="/">
+                        <BiGitCompare className="fs-5 me-2" />
+                        Add To Compare
+                      </a>
+                      <a href="/">
+                        <AiOutlineHeart className="fs-5 me-2" /> Add To Compare
+                      </a>
+                    </div>
+
+                    <div className="d-flex flex-column gap-10 my-3">
+                      <h3 className="product-heading">Shipping & Returns :</h3>{" "}
+                      <p className="product-data">
+                        {" "}
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Voluptatem pariatur tempore nulla sint rerum est
+                        iusto minus tempora, odio, magnam quibusdam cumque
+                        <br />
+                        <b>5-10 Business days</b>
+                      </p>
+                    </div>
+                    <div className="d-flex  align-items-center gap-10 my-2">
+                      <h3 className="product-heading">Product LInk :</h3>{" "}
+                      <a href="null" onClick={()=>{
+                        copyToClipboard("https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?cs=srgb&dl=pexels-fernando-arcos-190819.jpg&fm=jpg");
+                      }}>Copy Product Link</a>
                     </div>
                   </div>
                 </div>
