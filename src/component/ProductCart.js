@@ -12,9 +12,9 @@ const ProductCart = (props) => {
     >
       <Link to="/product/:id" className="product-cart position-relative">
         <div className="wishlist-icon position-absolute">
-          <Link>
+          <button className="bg-transparent border-0">
             <img src="/images/wish.svg" alt="add-cart" />
-          </Link>
+          </button>
         </div>
         <div className="product-image">
           <img src="/images/watch.jpg" className="img-fluid" alt="watch" />
@@ -41,15 +41,15 @@ const ProductCart = (props) => {
         </div>
         <div className="action-bar position-absolute">
           <div className="d-flex flex-column gap-15">
-            <Link>
+            <button className="bg-transparent border-0">
               <img src="/images/view.svg" alt="view" />
-            </Link>
-            <Link>
+            </button>
+            <button className="bg-transparent border-0">
               <img src="/images/add-cart.svg" alt="add-cart" />
-            </Link>
-            <Link>
+            </button>
+            <button className="bg-transparent border-0">
               <img src="/images/prodcompare.svg" alt="prodcompare" />
-            </Link>
+            </button>
           </div>
         </div>
       </Link>

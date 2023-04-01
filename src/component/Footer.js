@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsLinkedin, BsInstagram, BsFacebook, BsTwitter } from "react-icons/bs";
+import Container from "../component/Container";
 const Footer = () => {
   return (
     <>
       <footer className="py-4">
-        <div className="container-xxl">
+        <Container>
           <div className="row align-items-center">
             <div className="col-5">
               <div className="footer-top-data d-flex align-items-center gap-30">
@@ -28,7 +29,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </footer>
       <footer className="py-4">
         <div className="container-xxl">
@@ -71,11 +72,21 @@ const Footer = () => {
             <div className="col-3">
               <h4 className="text-white mb-4">Information</h4>
               <div className="footer-links d-flex flex-column">
-                <Link to="/privacy-policy" className="text-white py-2 mb-1">Privacy Policy</Link>
-                <Link to="/refund-policy" className="text-white py-2 mb-1">Refund Policy</Link>
-                <Link to="/shipping-policy" className="text-white py-2 mb-1">Shipping Policy</Link>
-                <Link to="/terms-condition" className="text-white py-2 mb-1">Terms & Condition</Link>
-                <Link to="/blog" className="text-white py-2 mb-1">Blogs</Link>
+                <Link to="/privacy-policy" className="text-white py-2 mb-1">
+                  Privacy Policy
+                </Link>
+                <Link to="/refund-policy" className="text-white py-2 mb-1">
+                  Refund Policy
+                </Link>
+                <Link to="/shipping-policy" className="text-white py-2 mb-1">
+                  Shipping Policy
+                </Link>
+                <Link to="/terms-condition" className="text-white py-2 mb-1">
+                  Terms & Condition
+                </Link>
+                <Link to="/blog" className="text-white py-2 mb-1">
+                  Blogs
+                </Link>
               </div>
             </div>
             <div className="col-3">

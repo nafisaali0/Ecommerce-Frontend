@@ -31,10 +31,8 @@ const SpecialProduct = () => {
                   className="d-flex
                 align-items-center gap-10"
                 >
-                  <span className="badge rounded-circle p-3 bg-danger">1</span>
-                  :
-                  <span className="badge rounded-circle p-3 bg-danger">1</span>
-                  :
+                  <span className="badge rounded-circle p-3 bg-danger">1</span>:
+                  <span className="badge rounded-circle p-3 bg-danger">1</span>:
                   <span className="badge rounded-circle p-3 bg-danger">1</span>
                 </div>
               </div>
