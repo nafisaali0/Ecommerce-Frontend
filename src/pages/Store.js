@@ -51,6 +51,7 @@ const Store = () => {
                     value=""
                     id="flexCheckChecked"
                     checked
+                    readOnly
                   />
                   <label
                     className="form-check-label"
@@ -65,19 +66,19 @@ const Store = () => {
                 <p>Price</p>
               </div>
               <div className="d-flex gap-10 align-items-center">
-                <div class="form-floating ">
+                <div className="form-floating ">
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="floatingInput"
                     placeholder="From"
                   />
                   <label htmlFor="floatingInput">From</label>
                 </div>
-                <div class="form-floating ">
+                <div className="form-floating ">
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="floatingInput"
                     placeholder="To"
                   />
@@ -229,7 +230,7 @@ const Store = () => {
                   </p>
                   <select className="form-control form-select bg-light" id="">
                     <option value="manual">Featured</option>
-                    <option value="best-selling" selected="selected">
+                    <option value="best-selling" >
                       Best Selling
                     </option>
                     <option value="title-assending">Alphabetically, A-Z</option>

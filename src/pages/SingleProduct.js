@@ -139,11 +139,11 @@ const SingleProduct = () => {
                       className="form-control"
                     />
                     <div className="d-flex gap-15 align-items-center">
-                      <button className="button border-0" type="submit">
+                      <Link to="/cart" className="button border-0" type="submit">
                         Add To Cart
-                      </button>
+                      </Link>
                       <Link
-                        to="/signup"
+                        to="/checkout"
                         className="button signup border-0"
                         type="submit"
                       >
