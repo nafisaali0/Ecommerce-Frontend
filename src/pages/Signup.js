@@ -11,7 +11,7 @@ import { regesterUser } from "../features/user/userSlice";
 const signupSchema = yup.object({
   firstname: yup.string().required("First Name is Required"),
   lastname: yup.string().required("Last Name is Required"),
-  email: yup.string().nullable().email("Email Should Be Valid"),
+  email: yup.string().nullable().email("Email Should Be Valid").required("Email is Required"),
   mobile: yup.string().required("Mobile Number is Required"),
   password: yup.string().required("Password is Required"),
 });

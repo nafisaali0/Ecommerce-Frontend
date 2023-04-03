@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BreadCrum from "../component/BreadCrum";
 import Meta from "../component/Meta";
 import ReactStars from "react-rating-stars-component";
 import ProductCart from "../component/ProductCart";
 import Color from "../component/Color";
 import Container from "../component/Container";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProduct } from "../features/products/productSlice";
 const Store = () => {
   const [grid, setGrid] = useState(4);
+  const productState = useSelector((state)=>state.product);
+  console.log(productState);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getProducts();
+  },[]);
+  const getProducts = ()=>{
+    dispatch(getAllProduct());
+  }
 
+  
   return (
     <>
       <Meta title={"Our Store"} />

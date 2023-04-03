@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 const ProductCart = (props) => {
   const { grid } = props;
   let location = useLocation();
-  console.log(location);
+  
   return (
     <div
       className={`${location.pathname === "/product" ? `gr-${grid}` : "col-3"}`}
