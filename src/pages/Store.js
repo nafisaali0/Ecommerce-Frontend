@@ -9,17 +9,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct } from "../features/products/productSlice";
 const Store = () => {
   const [grid, setGrid] = useState(4);
-  const productState = useSelector((state)=>state.product);
+
+  const productState = useSelector((state) => state.product.product);
   console.log(productState);
   const dispatch = useDispatch();
+
   useEffect(() => {
     getProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
-  const getProducts = ()=>{
-    dispatch(getAllProduct());
-  }
 
-  
+  const getProducts = () => {
+    dispatch(getAllProduct());
+  };
+
   return (
     <>
       <Meta title={"Our Store"} />
@@ -242,9 +245,7 @@ const Store = () => {
                   </p>
                   <select className="form-control form-select bg-light" id="">
                     <option value="manual">Featured</option>
-                    <option value="best-selling" >
-                      Best Selling
-                    </option>
+                    <option value="best-selling">Best Selling</option>
                     <option value="title-assending">Alphabetically, A-Z</option>
                     <option value="title-dessending">
                       Alphabetically, Z-A
@@ -298,10 +299,7 @@ const Store = () => {
             </div>
             <div className="product-list pb-5">
               <div className="d-flex flex-wrap gap-10">
-                <ProductCart grid={grid} />
-                <ProductCart grid={grid} />
-                <ProductCart grid={grid} />
-                <ProductCart grid={grid} />
+                <ProductCart data={productState} grid={grid} />
               </div>
             </div>
           </div>
