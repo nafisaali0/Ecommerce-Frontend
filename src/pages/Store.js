@@ -5,19 +5,19 @@ import ReactStars from "react-rating-stars-component";
 import ProductCart from "../component/ProductCart";
 import Color from "../component/Color";
 import Container from "../component/Container";
-import { useDispatch ,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct } from "../features/products/productSlice";
 const Store = () => {
   const [grid, setGrid] = useState(4);
 
-  const productState = useSelector((state) => state.product.product)
-  console.log("hello",productState);
+  const productState = useSelector((state) => state?.product?.product);
+  console.log( productState);
   const dispatch = useDispatch();
 
   useEffect(() => {
     getProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+  }, []);
 
   const getProducts = () => {
     dispatch(getAllProduct());
@@ -299,7 +299,10 @@ const Store = () => {
             </div>
             <div className="product-list pb-5">
               <div className="d-flex flex-wrap gap-10">
-                <ProductCart data={productState}  grid={grid} />
+                <ProductCart
+                  data={productState ? productState : []}
+                  grid={grid}
+                />
               </div>
             </div>
           </div>

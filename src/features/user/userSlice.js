@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { authService } from "./userService";
 import { toast } from "react-toastify";
 
+
 export const regesterUser = createAsyncThunk(
   "auth/regester",
   async (userData, thunkAPI) => {
@@ -24,13 +25,17 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-const userState ={
-  user: "",
+const getCustomerFromLocalStorage = localStorage.getItem("ucustomerser")
+  ? JSON.parse(localStorage.getItem("customer"))
+  : null;
+
+const userState = {
+  user: getCustomerFromLocalStorage,
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: "",
-}
+};
 
 export const authSlice = createSlice({
   name: "auth",

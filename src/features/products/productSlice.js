@@ -11,6 +11,16 @@ export const getAllProduct = createAsyncThunk(
     }
   }
 );
+export const addToWishList = createAsyncThunk(
+  "product/wishlist",
+  async (productId, thunkAPI) => {
+    try {
+      return await productService.addToWishList(productId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 const productState = {
   product: "",
@@ -40,6 +50,21 @@ export const productSlice = createSlice({
         state.isError = false;
         state.isSuccess = false;
         state.message = action.error;
+      })
+      .addCase(addToWishList.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addToWishList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.addToWishList = action.payload;
+        state.message = "Product Added To WishList";
+      })
+      .addCase(addToWishList.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = false;
       });
   },
 });
