@@ -4,27 +4,26 @@ import ReactStars from "react-rating-stars-component";
 import { useLocation } from "react-router-dom";
 const ProductCart = (props) => {
   const { grid, data } = props;
-  console.log(data);
-  let location = useLocation();
+  const location = useLocation();
 
   return (
     <>
-      {data?.map((item, index) => {
-        return (
+      {data &&
+        data?.map((item, index) => (
           <div
-          key={index}
+            key={index}
             className={`${
               location.pathname === "/product" ? `gr-${grid}` : "col-3"
             }`}
           >
             <Link
-              to={`${
+              to={
                 location.pathname === "/"
                   ? "/product/:id"
                   : location.pathname === "/product/:id"
                   ? "/product/1"
                   : ":id"
-              }`}
+              }
               className="product-cart position-relative"
             >
               <div className="wishlist-icon position-absolute">
@@ -49,7 +48,7 @@ const ProductCart = (props) => {
                 <h5 className="title">{item?.title}</h5>
                 <ReactStars
                   count={5}
-                  value={3}
+                  value={item?.totalrating}
                   edit={false}
                   size={24}
                   activeColor="#ffd700"
@@ -59,7 +58,7 @@ const ProductCart = (props) => {
                 >
                   {item?.description}
                 </p>
-                <p className="price">{item?.price}</p>
+                <p className="price">$ {item?.price}</p>
               </div>
               <div className="action-bar position-absolute">
                 <div className="d-flex flex-column gap-15">
@@ -76,8 +75,7 @@ const ProductCart = (props) => {
               </div>
             </Link>
           </div>
-        );
-      })}
+        ))}
     </>
   );
 };

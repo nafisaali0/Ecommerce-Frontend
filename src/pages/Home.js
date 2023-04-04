@@ -7,6 +7,7 @@ import SpecialProduct from "../component/SpecialProduct";
 import Container from "../component/Container";
 import { services } from "../uitls/Data";
 const Home = () => {
+  
   return (
     <>
       <Container class1="home-wrapper-1 py-5">
