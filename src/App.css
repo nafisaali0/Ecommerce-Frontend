@@ -166,17 +166,23 @@ footer:not(:first-child) {
   letter-spacing: 0.4px;
   color: var(--color-primary-4);
 }
-
+@media (max-width: 767px) {
+  .main-banner-content p {
+    font-size: 18px;
+    line-height: 16px;
+    margin-bottom: 2px !important;
+  }
+}
 .small-banner-content {
   top: 20%;
   left: 10%;
 }
 .small-banner-content h4 {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 18px;
   color: var(--color-primary-5);
-  margin: 0 0 12px;
+  margin: 0px;
   letter-spacing: 0.3px;
   text-transform: uppercase;
 }
@@ -196,6 +202,14 @@ footer:not(:first-child) {
 }
 .small-banner {
   width: 48%;
+}
+
+@media (max-width: 767px) {
+  .small-banner-content h5 {
+    font-size: 16px;
+    line-height: 18px;
+    margin-bottom: 2px !important;
+  }
 }
 /* Home section-1 End */
 
@@ -318,6 +332,14 @@ footer:not(:first-child) {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+  .famous-card img {
+    min-width: 100%;
+    max-height: 300px;
+    margin-bottom: 2px;
+  }
 }
 .famous-product-content {
   top: 10%;
@@ -869,7 +891,7 @@ footer:not(:first-child) {
 /* Checkout Start */
 .checkout-left-data,
 .checkout-right-data {
-  background-color: white!important;
+  background-color: white !important;
   padding: 40px 30px;
 }
 .sub-total p {
@@ -877,13 +899,14 @@ footer:not(:first-child) {
   font-weight: 400;
   color: var(--color-primary-4);
 }
-.total h4, title h4 {
+.total h4,
+title h4 {
   font-size: 20px;
   font-weight: 600;
   color: var(--color-primary-3);
 }
 
-.website-name h3{
+.website-name h3 {
   font-size: 22px;
   font-weight: 500;
   text-transform: uppercase;
@@ -896,9 +919,8 @@ footer:not(:first-child) {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
-.user-details{
+.user-details {
   font-size: 16px;
   font-weight: 400;
   color: var(--color-primary-4);
- 
 }
