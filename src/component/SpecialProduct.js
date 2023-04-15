@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 const SpecialProduct = () => {
   return (
-    <div className="col-4 mb-3">
-      <Link  className="special-product-cart position-relative">
+    <div className="">
+      <Link className="special-product-cart position-relative">
         <div className="d-flex justify-content-between">
           <div>
             <img className="img-fluid" src="images/watch.jpg" alt="watch" />
@@ -49,7 +49,9 @@ const SpecialProduct = () => {
                   ></div>
                 </div>
               </div>
-              <Link to="/cart" className="button">Add To Cart</Link>
+              <Link to="/cart" className="button">
+                Add To Cart
+              </Link>
             </div>
           </div>
         </div>

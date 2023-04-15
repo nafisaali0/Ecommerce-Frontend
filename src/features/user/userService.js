@@ -1,5 +1,5 @@
 import axios from "axios";
-import { base_url } from "../../uitls/axiosConfig";
+import { base_url } from "../../utils/axiosConfig";
 
 const regester = async (userData) => {
   const response = await axios.post(`${base_url}user/regester`, userData);
