@@ -5,7 +5,7 @@ import BlogCart from "../component/BlogCart";
 import ProductCart from "../component/ProductCart";
 import SpecialProduct from "../component/SpecialProduct";
 import Container from "../component/Container";
-import { services } from "../uitls/Data";
+import { services } from "../utils/Data";
 const Home = () => {
   
   return (
