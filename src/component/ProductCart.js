@@ -65,7 +65,7 @@ const ProductCart = (props) => {
                 activeColor="#ffd700"
               />
               <p
-                className={`description ${grid !== 3 ? "d-block" : "d-none"}`}
+                className={`description ${grid > 4 ? "d-block" : "d-none"}`}
                 dangerouslySetInnerHTML={{ __html: item?.description }}
               ></p>
               <p className="price">$ {item?.price}</p>

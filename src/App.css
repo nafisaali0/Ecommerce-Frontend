@@ -271,6 +271,7 @@ footer:not(:first-child) {
   -o-border-radius: 10px;
   overflow: hidden;
 }
+
 .product-cart:hover .action-bar {
   right: 15px;
 }
@@ -551,11 +552,6 @@ footer:not(:first-child) {
 }
 .gr-4 {
   width: 32%;
-}
-@media (max-width:1000px) {
-  .gr-4 {
-    width: 100% !important;
-  }
 }
 .gr-3 {
   width: 24%;

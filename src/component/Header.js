@@ -41,7 +41,7 @@ const Header = () => {
             <div className="header-main">
               <div>
                 <h2>
-                  <Link className="text-white">NanoSoft</Link>
+                  <Link to="/" className="text-white">NanoSoft</Link>
                 </h2>
               </div>
               <div>

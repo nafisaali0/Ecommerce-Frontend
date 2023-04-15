@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faFilter } from "@fortawesome/free-solid-svg-icons";
 
 const Store = () => {
-  const [grid, setGrid] = useState(4);
+  const [grid, setGrid] = useState(3);
 
   const productState = useSelector((state) => state?.product?.product);
   console.log(productState);

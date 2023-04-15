@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import BlogCart from "../component/BlogCart";
@@ -7,8 +7,22 @@ import SpecialProduct from "../component/SpecialProduct";
 import Container from "../component/Container";
 import { services } from "../utils/Data";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProduct } from "../features/products/productSlice";
 
 const Home = () => {
+  const productState = useSelector((state) => state?.product?.product);
+  console.log(productState);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getProducts = () => {
+    dispatch(getAllProduct());
+  };
   return (
     <>
       <HomeContainer>
@@ -187,10 +201,7 @@ const Home = () => {
             <div className="col-12 ">
               <h3 className="blog-heading">Featured Collections</h3>
             </div>
-            <ProductCart />
-            <ProductCart />
-            <ProductCart />
-            <ProductCart />
+            <ProductCart data={productState ? productState : []} />
           </div>
         </Container>
 
@@ -273,10 +284,7 @@ const Home = () => {
             <div className="col-12">
               <h3 className="blog-heading">Our Popular Product</h3>
             </div>
-            <ProductCart />
-            <ProductCart />
-            <ProductCart />
-            <ProductCart />
+            <ProductCart data={productState ? productState : []} />
           </div>
         </Container>
 
