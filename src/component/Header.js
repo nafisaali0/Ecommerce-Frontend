@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import Container from "../component/Container";
@@ -8,8 +8,15 @@ import {
   faAngleDown,
   faAngleUp,
   faBars,
+  faCross,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 const Header = () => {
+  const [sideActive, setSideActive] = useState(false);
+
+  const handleSidebarClick = () => {
+    setSideActive(!sideActive);
+  };
   return (
     <>
       <HeaderContainer>
@@ -105,7 +112,7 @@ const Header = () => {
                 </div>
               </div>
 
-              <div className="bar">
+              <div className="bar" onClick={handleSidebarClick}>
                 <FontAwesomeIcon
                   style={{ fontSize: "20px", color: "#FFF" }}
                   icon={faBars}
@@ -176,6 +183,120 @@ const Header = () => {
             </div>
           </Container>
         </header>
+
+        <div className={`sidebar ${sideActive ? "sidebar-active" : ""}`}>
+          <div className="bar" onClick={() => setSideActive(false)}>
+            <FontAwesomeIcon
+              style={{
+                fontSize: "20px",
+                color: "#FFF",
+                marginTop: "10px",
+                marginLeft: "10px",
+              }}
+              icon={faXmark}
+            ></FontAwesomeIcon>
+          </div>
+          <div>
+            <h2>
+              <Link className="text-white">NanoSoft</Link>
+            </h2>
+          </div>
+
+          <div className="header-side-1">
+            <div className="header-side-child">
+              <div>
+                <Link
+                  to="/compare-product"
+                  className="d-flex align-items-center gap-15 text-white"
+                >
+                  <img src="/images/compare.svg" alt="compare" />
+                  <p className="mb-0">Compare Product</p>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  to="/wishlist"
+                  className="d-flex align-items-center gap-15 text-white"
+                >
+                  <img src="/images/wishlist.svg" alt="wishlist" />
+                  <p className="mb-0">Favourite Products</p>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  to="/login"
+                  className="d-flex align-items-center gap-15 text-white"
+                >
+                  <img src="/images/user.svg" alt="user" />
+                  <p className="mb-0">Log In My Account</p>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  to="/cart"
+                  className="d-flex align-items-center gap-15 text-white"
+                >
+                  <img src="/images/cart.svg" alt="cart" />
+                  <div className="d-flex flex-column gap-10">
+                    <span className="badge bg-white text-dark">0</span>
+                    <p className="mb-0">$500</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="dropdown">
+              <button
+                className="btn btn-secondary dropdown-toggle bg-transparent border-0 gap-20 d-flex align-items-center"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src="/images/menu.svg" alt="menu" />
+                <span className="me-5 d-inline-block">Shop Catagories</span>
+              </button>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton1"
+              >
+                <li>
+                  <a className="dropdown-item text-white" href="/">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item text-white" href="/">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item text-white" href="/">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="menu-links-parent">
+            <div className="menu-links-2">
+              <NavLink className="link-text" to="/">
+                Home
+              </NavLink>
+              <NavLink className="link-text" to="/product">
+                Our Store
+              </NavLink>
+              <NavLink className="link-text" to="/blog">
+                Blog
+              </NavLink>
+              <NavLink className="link-text" to="/contact">
+                Contact
+              </NavLink>
+            </div>
+          </div>
+        </div>
       </HeaderContainer>
     </>
   );
@@ -210,6 +331,44 @@ const HeaderContainer = styled.div`
     .header-bottom {
       display: none;
     }
+  }
+
+  //sidebar
+
+  .sidebar {
+    display: block;
+    max-width: 400px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    right: -100%;
+    z-index: 302;
+    background-color: #fff;
+    height: 100vh;
+    transition: all 0.4s linear;
+    background-color: #0f1e28;
+    padding: 10px;
+
+    .dropdown-menu {
+      background-color: #0f1e28;
+    }
+  }
+
+  .sidebar-active {
+    right: 0px;
+  }
+
+  .header-side-child,
+  .menu-links-2 {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .menu-links-parent {
+    margin-top: 15px;
   }
 `;
 export default Header;
