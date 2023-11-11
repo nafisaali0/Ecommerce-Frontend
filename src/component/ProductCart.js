@@ -6,10 +6,12 @@ import { useDispatch } from "react-redux";
 import { addToWishList } from "../features/products/productSlice";
 const ProductCart = (props) => {
   const { grid, data } = props;
-  const dispatch = useDispatch();
+  console.log("data", data);
   const location = useLocation();
+  const dispatch = useDispatch();
 
-  const Wishlist = (id) => {
+  const addToWish = (id) => {
+    console.log(id)
     dispatch(addToWishList(id));
   };
 
@@ -23,20 +25,20 @@ const ProductCart = (props) => {
           }`}
         >
           <Link
-            to={
-              location.pathname === "/"
-                ? "/product/:id"
-                : location.pathname === "/product/:id"
-                ? "/product/1"
-                : ":id"
-            }
+            // to={
+            //   location.pathname === "/"
+            //     ? "/product/:id"
+            //     : location.pathname === "/product/:id"
+            //     ? "/product/1"
+            //     : ":id"
+            // }
             className="product-cart position-relative"
           >
             <div className="wishlist-icon position-absolute">
               <button
                 className="bg-transparent border-0"
                 onClick={(e) => {
-                  Wishlist(item?._id);
+                  addToWish(item?._id);
                 }}
               >
                 <img src="/images/wish.svg" alt="add-cart" />
@@ -45,12 +47,14 @@ const ProductCart = (props) => {
             <div className="product-image">
               <img
                 src={item?.images[0]?.url}
-                className="img-fluid"
+                className="img-fluid  mx-auto hoverable"
+                width={160}
                 alt="watch"
               />
               <img
-                src="/images/watch-02.avif"
-                className="img-fluid"
+                src={item?.images[0]?.url}
+                className="img-fluid  mx-auto hoverable"
+                width={160}
                 alt="watch-02"
               />
             </div>

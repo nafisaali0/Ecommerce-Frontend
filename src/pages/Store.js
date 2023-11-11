@@ -6,16 +6,15 @@ import ProductCart from "../component/ProductCart";
 import Color from "../component/Color";
 import Container from "../component/Container";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProduct } from "../features/products/productSlice";
+import { getAllProducts } from "../features/products/productSlice";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faFilter } from "@fortawesome/free-solid-svg-icons";
 
 const Store = () => {
   const [grid, setGrid] = useState(3);
-
   const productState = useSelector((state) => state?.product?.product);
-  console.log(productState);
+  // console.log(productState);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +23,7 @@ const Store = () => {
   }, []);
 
   const getProducts = () => {
-    dispatch(getAllProduct());
+    dispatch(getAllProducts());
   };
 
   const [sideActive, setSideActive] = useState(false);

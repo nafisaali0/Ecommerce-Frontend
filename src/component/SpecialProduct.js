@@ -1,27 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
-const SpecialProduct = () => {
+const SpecialProduct = (props) => {
+  const { title, brand, totalrating, price, sold, quantity, imgUrl } = props;
   return (
     <div className="">
       <Link className="special-product-cart position-relative">
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between gap-4">
           <div>
-            <img className="img-fluid" src="images/watch.jpg" alt="watch" />
+            <img
+              className="img-fluid d-block"
+              width={180}
+              src={imgUrl ? imgUrl : "images/watch.jpg"}
+              alt="watch"
+            />
           </div>
           <div>
             <div className="special-product-content">
-              <h6 className="brand">Rolex</h6>
-              <h5 className="title">Ramjan is not so far</h5>
+              <h6 className="brand">{brand}</h6>
+              <h5 className="title">{title}</h5>
               <ReactStars
                 count={5}
-                value={4}
+                value={totalrating}
                 edit={false}
                 size={24}
                 activeColor="#ffd700"
               />
               <p className="price">
-                <span className="red-p">$100</span>&nbsp;<strike>$200</strike>
+                <span className="red-p">${price}</span>&nbsp;{" "}
+                {/* <strike>$200</strike> */}
               </p>
               <div className="discount-till d-flex align-items-center gap-10">
                 <p className="mb-0 d-flex gap-10">
@@ -37,15 +44,15 @@ const SpecialProduct = () => {
                 </div>
               </div>
               <div className="product-count my-3">
-                <p>Products:5</p>
+                <p>Products:{quantity}</p>
                 <div className="progress">
                   <div
                     className="progress-bar"
                     role="progressbar"
-                    style={{ width: "25%" }}
-                    aria-valuenow="25"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
+                    style={{ width: quantity / quantity + sold * 100 }}
+                    aria-valuenow={quantity / quantity + sold * 100}
+                    aria-valuemin={quantity}
+                    aria-valuemax={sold + quantity}
                   ></div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import BlogCart from "../component/BlogCart";
@@ -8,11 +8,11 @@ import Container from "../component/Container";
 import { services } from "../utils/Data";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProduct } from "../features/products/productSlice";
+import { getAllProducts } from "../features/products/productSlice";
 
 const Home = () => {
   const productState = useSelector((state) => state?.product?.product);
-  console.log(productState);
+  console.log("productState", productState);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
 
   const getProducts = () => {
-    dispatch(getAllProduct());
+    dispatch(getAllProducts());
   };
   return (
     <>
@@ -271,11 +271,27 @@ const Home = () => {
             <div className="col-12">
               <h3 className="blog-heading">Special products</h3>
             </div>
-            <div className="special-card-container">
-              <SpecialProduct />
-              <SpecialProduct />
-              <SpecialProduct />
-            </div>
+          </div>
+          <div className="row">
+            {productState &&
+              productState?.map((item, index) => {
+                if (item.tags === "special") {
+                  return (
+                    <div className="special-card-container">
+                      <SpecialProduct
+                        key={index}
+                        title={item?.title}
+                        brand={item?.brands}
+                        totalrating={item?.totalrating.toString()}
+                        price={item?.price}
+                        sold={item?.sold}
+                        quantity={item?.quantity}
+                        imgUrl={item?.images[0].url}
+                      />
+                    </div>
+                  );
+                }
+              })}
           </div>
         </Container>
 
@@ -285,6 +301,27 @@ const Home = () => {
               <h3 className="blog-heading">Our Popular Product</h3>
             </div>
             <ProductCart data={productState ? productState : []} />
+          </div>
+          <div className="row">
+            {productState &&
+              productState?.map((item, index) => {
+                if (item.tags === "popular") {
+                  return (
+                    <div className="popular-card-container">
+                      <SpecialProduct
+                        key={index}
+                        title={item?.title}
+                        brand={item?.brands}
+                        totalrating={item?.totalrating.toString()}
+                        price={item?.price}
+                        sold={item?.sold}
+                        quantity={item?.quantity}
+                        imgUrl={item?.images[0].url}
+                      />
+                    </div>
+                  );
+                }
+              })}
           </div>
         </Container>
 
@@ -375,11 +412,11 @@ const HomeContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
-  .special-card-container {
+  /* .special-card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
-  }
+  } */
   /* .item-text {
     display: flex;
     align-items: center;

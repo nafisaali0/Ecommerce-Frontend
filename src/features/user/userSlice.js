@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 
 export const regesterUser = createAsyncThunk(
-  "auth/regester",
+  "user/regester",
   async (userData, thunkAPI) => {
     try {
       return await authService.regester(userData);
@@ -15,7 +15,7 @@ export const regesterUser = createAsyncThunk(
 );
 
 export const loginUser = createAsyncThunk(
-  "auth/login",
+  "user/login",
   async (loginData, thunkAPI) => {
     try {
       return await authService.login(loginData);
@@ -25,7 +25,18 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-const getCustomerFromLocalStorage = localStorage.getItem("ucustomerser")
+export const getUserProductWishList = createAsyncThunk(
+  "user/wishlist",
+  async ( thunkAPI) => {
+    try {
+      return await authService.getUserWishlist();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+const getCustomerFromLocalStorage = localStorage.getItem("customer")
   ? JSON.parse(localStorage.getItem("customer"))
   : null;
 
@@ -85,6 +96,22 @@ export const authSlice = createSlice({
         if (state.isError === true) {
           toast.error(action.error);
         }
+      })
+      .addCase(getUserProductWishList.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserProductWishList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.wishlistProducts = action.payload;
+        state.message = "Wishlist Product Fetch Succesfully"
+      })
+      .addCase(getUserProductWishList.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = false;
+        state.message = action.error;
       });
   },
 });

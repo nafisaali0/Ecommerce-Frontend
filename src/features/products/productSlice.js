@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { productService } from "./productService";
 
-export const getAllProduct = createAsyncThunk(
+export const getAllProducts = createAsyncThunk(
   "product/get",
   async (thunkAPI) => {
     try {
-      return await productService.getProduct();
+      return await productService.getProducts();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -15,12 +15,17 @@ export const addToWishList = createAsyncThunk(
   "product/wishlist",
   async (productId, thunkAPI) => {
     try {
-      return await productService.addToWishList(productId);
+      console.log("Adding to wishlist:", productId);
+      const response = await productService.addToWishList(productId);
+      console.log("Response:", response);
+      return response;
     } catch (error) {
+      console.error("Error adding to wishlist:", error);
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
+
 
 const productState = {
   product: "",
@@ -36,18 +41,18 @@ export const productSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllProduct.pending, (state) => {
+      .addCase(getAllProducts.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getAllProduct.fulfilled, (state, action) => {
+      .addCase(getAllProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
         state.product = action.payload;
       })
-      .addCase(getAllProduct.rejected, (state, action) => {
+      .addCase(getAllProducts.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = false;
+        state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
       })
@@ -63,8 +68,9 @@ export const productSlice = createSlice({
       })
       .addCase(addToWishList.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = false;
+        state.isError = true;
         state.isSuccess = false;
+        state.message = action.error;
       });
   },
 });
