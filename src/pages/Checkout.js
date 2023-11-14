@@ -210,7 +210,7 @@ const Checkout = () => {
           <div className="col-7">
             <div className="checkout-left-data">
               <div className="website-name pb-2 d-inline-block">
-                <h3>VibHub IT</h3>
+                <h3>VibHub</h3>
               </div>
 
               <nav
