@@ -116,7 +116,7 @@ const Footer = () => {
             <div className="row">
               <div className="col-12">
                 <p className="text-center mb-0 text-white">
-                  &copy; {new Date().getFullYear()}; Powered By NanoSoft{" "}
+                  &copy; {new Date().getFullYear()}; Powered By VibHub{" "}
                 </p>
               </div>
             </div>
