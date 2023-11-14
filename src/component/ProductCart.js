@@ -11,7 +11,7 @@ const ProductCart = (props) => {
   const dispatch = useDispatch();
 
   const addToWish = (id) => {
-    console.log(id)
+    console.log(id);
     dispatch(addToWishList(id));
   };
 
@@ -24,16 +24,7 @@ const ProductCart = (props) => {
             location.pathname === "/product" ? `gr-${grid}` : "col-3"
           }`}
         >
-          <Link
-            // to={
-            //   location.pathname === "/"
-            //     ? "/product/:id"
-            //     : location.pathname === "/product/:id"
-            //     ? "/product/1"
-            //     : ":id"
-            // }
-            className="product-cart position-relative"
-          >
+          <div className="product-cart position-relative">
             <div className="wishlist-icon position-absolute">
               <button
                 className="bg-transparent border-0"
@@ -76,9 +67,9 @@ const ProductCart = (props) => {
             </div>
             <div className="action-bar position-absolute">
               <div className="d-flex flex-column gap-15">
-                <button className="bg-transparent border-0">
+                <Link to={'/product/'+item?._id} className="bg-transparent border-0">
                   <img src="/images/view.svg" alt="view" />
-                </button>
+                </Link>
                 <button className="bg-transparent border-0">
                   <img src="/images/add-cart.svg" alt="add-cart" />
                 </button>
@@ -87,7 +78,7 @@ const ProductCart = (props) => {
                 </button>
               </div>
             </div>
-          </Link>
+          </div>
         </div>
       ))}
     </>

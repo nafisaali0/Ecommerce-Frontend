@@ -2,7 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 const SpecialProduct = (props) => {
-  const { title, brand, totalrating, price, sold, quantity, imgUrl } = props;
+  const {
+    title,
+    id,
+    brand,
+    totalrating,
+    price,
+    sold,
+    quantity,
+    reedim,
+    imgUrl,
+  } = props;
   return (
     <div className="">
       <Link className="special-product-cart position-relative">
@@ -26,10 +36,11 @@ const SpecialProduct = (props) => {
                 size={24}
                 activeColor="#ffd700"
               />
-              <p className="price">
-                <span className="red-p">${price}</span>&nbsp;{" "}
-                {/* <strike>$200</strike> */}
-              </p>
+              <div className="d-flex justify-content-between align-items-center py-3">
+                <p className="price">$ {price}</p>
+                <p className="price">Reedim Coin : {reedim ? reedim : 0}</p>
+              </div>
+
               <div className="discount-till d-flex align-items-center gap-10">
                 <p className="mb-0 d-flex gap-10">
                   <b>5 </b>Days
@@ -56,8 +67,8 @@ const SpecialProduct = (props) => {
                   ></div>
                 </div>
               </div>
-              <Link to="/cart" className="button">
-                Add To Cart
+              <Link to={"/product/" + id} className="button">
+                View
               </Link>
             </div>
           </div>

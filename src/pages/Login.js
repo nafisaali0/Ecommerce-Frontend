@@ -1,21 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BreadCrum from "../component/BreadCrum";
 import Meta from "../component/Meta";
 import Container from "../component/Container";
 import CustomInput from "../component/CustomInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/user/userSlice";
 
 const loginSchema = yup.object({
-  email: yup.string().nullable().email("Email Should Be Valid").required("Email is Required"),
+  email: yup
+    .string()
+    .nullable()
+    .email("Email Should Be Valid")
+    .required("Email is Required"),
   password: yup.string().required("Password is Required"),
 });
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const authState = useSelector((state) => state?.auth);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -23,7 +29,8 @@ const Login = () => {
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      dispatch(loginUser(values))
+      dispatch(loginUser(values));
+      navigate("/");
     },
   });
 
@@ -64,9 +71,7 @@ const Login = () => {
                   onBlur={formik.handleBlur("password")}
                 />
                 <div className="error">
-                  {
-                    formik.touched.password && formik.errors.password
-                  }
+                  {formik.touched.password && formik.errors.password}
                 </div>
 
                 <div>

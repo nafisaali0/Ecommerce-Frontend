@@ -9,7 +9,36 @@ import {
 import { FiPhoneCall } from "react-icons/fi";
 import Container from "../component/Container";
 import CustomInput from "../component/CustomInput";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import { createQuery } from "../features/contact/contactSlice";
+
+const signupSchema = yup.object({
+  name: yup.string().required("Name is Required"),
+  email: yup
+    .string()
+    .nullable()
+    .email("Email Should Be Valid")
+    .required("Email is Required"),
+  mobile: yup.string().nullable().required("Mobile Number is Required"),
+  comment: yup.string().nullable().required("Comment is Required"),
+});
+
 const Contact = () => {
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      mobile: "",
+      comment: "",
+    },
+    validationSchema: signupSchema,
+    onSubmit: (values) => {
+      dispatch(createQuery(values));
+    },
+  });
   return (
     <>
       <Meta title={"Contact"} />
@@ -32,38 +61,71 @@ const Contact = () => {
             <div className="contact-wrapper-info d-flex justify-content-between">
               <div>
                 <h3 className="contact-title mb-4">Contact</h3>
-                <form action="" className="d-flex flex-column gap-20">
+                <form
+                  action=""
+                  onSubmit={formik.handleSubmit}
+                  className="d-flex flex-column gap-20"
+                >
                   <CustomInput
+                    name="name"
                     type="text"
                     className="form-control"
                     placeholder="Enter Your Name"
+                    value={formik.values.name}
+                    onChange={formik.handleChange("name")}
+                    onBlur={formik.handleBlur("name")}
                   />
+                  <div className="error">
+                    {formik.touched.name && formik.errors.name}
+                  </div>
 
                   <CustomInput
+                    name="email"
                     type="email"
                     className="form-control"
-                    placeholder="Enter Your Email"
+                    placeholder="Enter Your email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange("email")}
+                    onBlur={formik.handleBlur("email")}
                   />
+                  <div className="error">
+                    {formik.touched.email && formik.errors.email}
+                  </div>
 
                   <CustomInput
                     type="tel"
                     className="form-control"
                     placeholder="Enter Your Mobile Number"
+                    value={formik.values.mobile}
+                    onChange={formik.handleChange("mobile")}
+                    onBlur={formik.handleBlur("mobile")}
                   />
+                  <div className="error">
+                    {formik.touched.mobile && formik.errors.mobile}
+                  </div>
 
                   <div>
                     <textarea
                       cols={30}
                       rows={4}
-                      id=""
-                      name=""
+                      id="comment"
+                      name="comment"
                       type="text"
                       className="form-control w-100"
                       placeholder="Type Your Comment Here"
+                      value={formik.values.comment}
+                      onChange={formik.handleChange("comment")}
+                      onBlur={formik.handleBlur("comment")}
                     />
+                    <div className="error">
+                      {formik.touched.comment && formik.errors.comment}
+                    </div>
                   </div>
+
                   <div>
-                    <button className="button border-0">Submit</button>
+                    <button className="button border-0" type="submit">
+                      Submit
+                    </button>
                   </div>
                 </form>
               </div>

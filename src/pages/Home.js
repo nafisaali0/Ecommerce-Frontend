@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import BlogCart from "../component/BlogCart";
 import ProductCart from "../component/ProductCart";
 import SpecialProduct from "../component/SpecialProduct";
 import Container from "../component/Container";
 import { services } from "../utils/Data";
+import ReactStars from "react-rating-stars-component";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../features/products/productSlice";
+import { addToWishList } from "../features/products/productSlice";
 
 const Home = () => {
   const productState = useSelector((state) => state?.product?.product);
   console.log("productState", productState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getProducts();
@@ -22,6 +25,11 @@ const Home = () => {
 
   const getProducts = () => {
     dispatch(getAllProducts());
+  };
+
+  const addToWish = (id) => {
+    console.log(id);
+    dispatch(addToWishList(id));
   };
   return (
     <>
@@ -201,7 +209,90 @@ const Home = () => {
             <div className="col-12 ">
               <h3 className="blog-heading">Featured Collections</h3>
             </div>
-            <ProductCart data={productState ? productState : []} />
+          </div>
+          <div className="row">
+            <div className="popular-cart-container">
+              {Array.isArray(productState) &&
+                productState?.map((item, index) => {
+                  if (item?.tags === "featured") {
+                    return (
+                      <div key={index}>
+                        <div className="product-cart position-relative">
+                          <div className="wishlist-icon position-absolute">
+                            <button
+                              className="bg-transparent border-0"
+                              onClick={(e) => {
+                                addToWish(item?._id);
+                              }}
+                            >
+                              <img src="/images/wish.svg" alt="add-cart" />
+                            </button>
+                          </div>
+                          <div className="product-image">
+                            <img
+                              src={item?.images[0]?.url}
+                              className="img-fluid  mx-auto hoverable"
+                              width={160}
+                              alt="watch"
+                            />
+                            <img
+                              src={item?.images[0]?.url}
+                              className="img-fluid  mx-auto hoverable"
+                              width={160}
+                              alt="watch-02"
+                            />
+                          </div>
+                          <div className="product-details">
+                            <h6 className="brand"> {item?.brands}</h6>
+                            <h5 className="title">{item?.title}</h5>
+                            <ReactStars
+                              count={5}
+                              value={item?.totalrating}
+                              edit={false}
+                              size={24}
+                              activeColor="#ffd700"
+                            />
+                            <p
+                              dangerouslySetInnerHTML={{
+                                __html: item?.description,
+                              }}
+                            ></p>
+                            <div className="d-flex justify-content-between align-items-center py-3">
+                              <p className="price">$ {item?.price}</p>
+                              <p className="price">Reedim Coin : {item?.reedim ? item?.reedim : 0}</p>
+                            </div>
+                          </div>
+                          <div className="action-bar position-absolute">
+                            <div className="d-flex flex-column gap-15">
+                              <button className="bg-transparent border-0">
+                                <img
+                                  onClick={() =>
+                                    navigate("/product/" + item?._id)
+                                  }
+                                  src="/images/view.svg"
+                                  alt="view"
+                                />
+                              </button>
+                              <button className="bg-transparent border-0">
+                                <img
+                                  src="/images/add-cart.svg"
+                                  alt="add-cart"
+                                />
+                              </button>
+                              <button className="bg-transparent border-0">
+                                <img
+                                  src="/images/prodcompare.svg"
+                                  alt="prodcompare"
+                                />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+            </div>
           </div>
         </Container>
 
@@ -273,19 +364,21 @@ const Home = () => {
             </div>
           </div>
           <div className="row">
-            {productState &&
+            {Array.isArray(productState) &&
               productState?.map((item, index) => {
                 if (item.tags === "special") {
                   return (
                     <div className="special-card-container">
                       <SpecialProduct
                         key={index}
+                        id={item?._id}
                         title={item?.title}
                         brand={item?.brands}
                         totalrating={item?.totalrating.toString()}
                         price={item?.price}
                         sold={item?.sold}
                         quantity={item?.quantity}
+                        reedim={item?.reedim}
                         imgUrl={item?.images[0].url}
                       />
                     </div>
@@ -300,28 +393,90 @@ const Home = () => {
             <div className="col-12">
               <h3 className="blog-heading">Our Popular Product</h3>
             </div>
-            <ProductCart data={productState ? productState : []} />
           </div>
           <div className="row">
-            {productState &&
-              productState?.map((item, index) => {
-                if (item.tags === "popular") {
-                  return (
-                    <div className="popular-card-container">
-                      <SpecialProduct
-                        key={index}
-                        title={item?.title}
-                        brand={item?.brands}
-                        totalrating={item?.totalrating.toString()}
-                        price={item?.price}
-                        sold={item?.sold}
-                        quantity={item?.quantity}
-                        imgUrl={item?.images[0].url}
-                      />
-                    </div>
-                  );
-                }
-              })}
+            <div className="popular-cart-container">
+              {Array.isArray(productState) &&
+                productState?.map((item, index) => {
+                  if (item?.tags === "popular") {
+                    return (
+                      <div key={index}>
+                        <div className="product-cart position-relative">
+                          <div className="wishlist-icon position-absolute">
+                            <button
+                              className="bg-transparent border-0"
+                              onClick={(e) => {
+                                addToWish(item?._id);
+                              }}
+                            >
+                              <img src="/images/wish.svg" alt="add-cart" />
+                            </button>
+                          </div>
+                          <div className="product-image">
+                            <img
+                              src={item?.images[0]?.url}
+                              className="img-fluid  mx-auto hoverable"
+                              width={160}
+                              alt="watch"
+                            />
+                            <img
+                              src={item?.images[0]?.url}
+                              className="img-fluid  mx-auto hoverable"
+                              width={160}
+                              alt="watch-02"
+                            />
+                          </div>
+                          <div className="product-details">
+                            <h6 className="brand"> {item?.brands}</h6>
+                            <h5 className="title">{item?.title}</h5>
+                            <ReactStars
+                              count={5}
+                              value={item?.totalrating}
+                              edit={false}
+                              size={24}
+                              activeColor="#ffd700"
+                            />
+                            <p
+                              dangerouslySetInnerHTML={{
+                                __html: item?.description,
+                              }}
+                            ></p>
+                             <div className="d-flex justify-content-between align-items-center py-3">
+                              <p className="price">$ {item?.price}</p>
+                              <p className="price">Reedim Coin : {item?.reedim ? item?.reedim : 0}</p>
+                            </div>
+                          </div>
+                          <div className="action-bar position-absolute">
+                            <div className="d-flex flex-column gap-15">
+                              <button className="bg-transparent border-0">
+                                <img
+                                  onClick={() =>
+                                    navigate("/product/" + item?._id)
+                                  }
+                                  src="/images/view.svg"
+                                  alt="view"
+                                />
+                              </button>
+                              <button className="bg-transparent border-0">
+                                <img
+                                  src="/images/add-cart.svg"
+                                  alt="add-cart"
+                                />
+                              </button>
+                              <button className="bg-transparent border-0">
+                                <img
+                                  src="/images/prodcompare.svg"
+                                  alt="prodcompare"
+                                />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+            </div>
           </div>
         </Container>
 
@@ -360,7 +515,7 @@ const Home = () => {
           </div>
         </Container>
 
-        <Container class1="blog-wrapper home-wrapper-2 py-5">
+        {/* <Container class1="blog-wrapper home-wrapper-2 py-5">
           <div className="row">
             <div className="col-12">
               <h3 className="blog-heading">Our Latest Blogs</h3>
@@ -380,7 +535,7 @@ const Home = () => {
               <BlogCart />
             </div>
           </div>
-        </Container>
+        </Container> */}
       </HomeContainer>
     </>
   );
@@ -408,15 +563,17 @@ const HomeContainer = styled.div`
     padding: 5px;
     background-color: #fff;
   }
-  .famous-card-container {
+  .famous-card-container,
+  .popular-cart-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
   }
-  /* .special-card-container {
+  .special-card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
-  } */
+  }
   /* .item-text {
     display: flex;
     align-items: center;

@@ -17,7 +17,7 @@ const Wishlist = () => {
   const getWishListFromDB = () => {
     dispatch(getUserProductWishList());
   };
-  const wishlistState = useSelector((state) => state?.auth.wishlist);
+  const wishlistState = useSelector((state) => state?.auth?.wishlistProducts?.wishlist || []);
   console.log("wishlistState", wishlistState);
   const removeFromWishList = (id) => {
     dispatch(addToWishList(id));
@@ -32,7 +32,7 @@ const Wishlist = () => {
       <BreadCrum title="Wishlist" />
       <Container class1="wishlist-wrapper home-wrapper-2 py-5">
         <div className="row">
-          {wishlistState?.length === (0 || undefined) && <div className="text-center fs-3">No Data Found</div>}
+          {wishlistState?.length === 0 && <div className="text-center fs-3">No Data Found</div>}
           {wishlistState &&
             wishlistState?.map((item, index) => {
               return (
@@ -53,15 +53,17 @@ const Wishlist = () => {
                             ? item?.images[0].url
                             : "images/watch.jpg"
                         }
-                        className="img-fluid d-block mx-auto"
+                        className=" d-block mx-auto "
                         width={160}
+                        height={160}
                         alt="watch"
                       />
                     </div>
                   </div>
-                  <div className="wishlist-details py-3">
+                  <div className="wishlist-details py-3 px-3 bg-white">
                     <h5 className="title">{item?.title}</h5>
-                    <h6 className="price mb-3 mt-3">{item}</h6>
+                    <h6 className="price mb-3 mt-3">{item.brands}</h6>
+                    <h6 className="price mb-3 mt-3">{item.price}</h6>
                   </div>
                 </div>
               );

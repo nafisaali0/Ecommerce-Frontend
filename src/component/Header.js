@@ -1,15 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import Container from "../component/Container";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { getAllProducts } from "../features/products/productSlice";
 const Header = () => {
+  const dispatch = useDispatch();
+  const cartState = useSelector((state) => state?.auth?.getCartProduct);
+  const productState = useSelector((state) => state?.product?.product);
+  console.log("gcP", productState);
+  const authState = useSelector((state) => state?.auth);
+  console.log("cart", cartState);
+  const [subtotal, setSubtotal] = useState(0);
   const [sideActive, setSideActive] = useState(false);
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    // Calculate subtotal whenever cart items change
+    if (cartState) {
+      const newSubtotal = cartState.reduce(
+        (total, item) => total + item?.productId?.price * item?.quantity,
+        0
+      );
+      setSubtotal(newSubtotal);
+    }
+  }, [cartState]);
 
   const handleSidebarClick = () => {
     setSideActive(!sideActive);
@@ -41,7 +62,9 @@ const Header = () => {
             <div className="header-main">
               <div>
                 <h2>
-                  <Link to="/" className="text-white">NanoSoft</Link>
+                  <Link to="/" className="text-white">
+                    VibeHub
+                  </Link>
                 </h2>
               </div>
               <div>
@@ -85,13 +108,20 @@ const Header = () => {
                   </div>
                   <div>
                     <Link
-                      to="/login"
+                      to={authState?.user === null ? "/login" : ""}
                       className="d-flex align-items-center gap-15 text-white"
                     >
                       <img src="/images/user.svg" alt="user" />
-                      <p className="mb-0">
-                        Log In <br /> My Account
-                      </p>
+                      {authState?.user === null ? (
+                        <p className="mb-0">
+                          Log In <br /> My Account
+                        </p>
+                      ) : (
+                        <p className="mb-0">
+                          {authState?.createUser?.firstname ||
+                            authState?.user.firstname}
+                        </p>
+                      )}
                     </Link>
                   </div>
                   <div>
@@ -101,8 +131,10 @@ const Header = () => {
                     >
                       <img src="/images/cart.svg" alt="cart" />
                       <div className="d-flex flex-column gap-10">
-                        <span className="badge bg-white text-dark">0</span>
-                        <p className="mb-0">$500</p>
+                        <span className="badge bg-white text-dark">
+                          {cartState?.length ? cartState?.length : 0}
+                        </span>
+                        <p className="mb-0">${subtotal ? subtotal : 0}</p>
                       </div>
                     </Link>
                   </div>
@@ -143,17 +175,17 @@ const Header = () => {
                       >
                         <li>
                           <a className="dropdown-item text-white" href="/">
-                            Action
+                            Man
                           </a>
                         </li>
                         <li>
                           <a className="dropdown-item text-white" href="/">
-                            Another action
+                            Women
                           </a>
                         </li>
                         <li>
                           <a className="dropdown-item text-white" href="/">
-                            Something else here
+                            Children
                           </a>
                         </li>
                       </ul>
@@ -167,9 +199,12 @@ const Header = () => {
                       <NavLink className="link-text" to="/product">
                         Our Store
                       </NavLink>
+                      {/* <NavLink className="link-text" to="/my-order">
+                        My Order
+                      </NavLink>
                       <NavLink className="link-text" to="/blog">
                         Blog
-                      </NavLink>
+                      </NavLink> */}
                       <NavLink className="link-text" to="/contact">
                         Contact
                       </NavLink>
@@ -195,7 +230,7 @@ const Header = () => {
           </div>
           <div>
             <h2>
-              <Link className="text-white">NanoSoft</Link>
+              <Link className="text-white">VibeHub</Link>
             </h2>
           </div>
 
@@ -260,17 +295,17 @@ const Header = () => {
               >
                 <li>
                   <a className="dropdown-item text-white" href="/">
-                    Action
+                    Man
                   </a>
                 </li>
                 <li>
                   <a className="dropdown-item text-white" href="/">
-                    Another action
+                    Women
                   </a>
                 </li>
                 <li>
                   <a className="dropdown-item text-white" href="/">
-                    Something else here
+                    Children
                   </a>
                 </li>
               </ul>

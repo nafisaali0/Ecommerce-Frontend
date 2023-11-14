@@ -96,7 +96,7 @@ const Footer = () => {
                 <div className="footer-links d-flex flex-column">
                   <Link className="text-white py-2 mb-1">About Us</Link>
                   <Link className="text-white py-2 mb-1">FAQ</Link>
-                  <Link className="text-white py-2 mb-1">Contact</Link>
+                  <Link to="/contact" className="text-white py-2 mb-1">Contact</Link>
                 </div>
               </div>
               <div>
