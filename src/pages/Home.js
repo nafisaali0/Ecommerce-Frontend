@@ -379,7 +379,7 @@ const Home = () => {
                         sold={item?.sold}
                         quantity={item?.quantity}
                         reedim={item?.reedim}
-                        imgUrl={item?.images[0].url}
+                        imgUrl={item?.images[0]?.url}
                       />
                     </div>
                   );
