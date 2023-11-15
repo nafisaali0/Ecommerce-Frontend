@@ -31,7 +31,6 @@ const Login = () => {
     onSubmit: (values) => {
       dispatch(loginUser(values));
       navigate("/");
-      window.location.reload()
     },
   });
 
