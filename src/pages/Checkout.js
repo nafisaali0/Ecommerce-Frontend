@@ -9,6 +9,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { config } from "../utils/axiosConfig";
+import { FaBitcoin } from "react-icons/fa";
+import { SlBadge } from "react-icons/sl";
 
 // const checkoutSchema = yup.object({
 //   firstName: yup.string().required("FirstName is Required"),
@@ -32,6 +34,7 @@ const Checkout = () => {
     razorpayOrderId: "",
   });
   const cartState = useSelector((state) => state?.auth?.getCartProduct);
+  const reedim = cartState?.productId?.reedim;
   console.log(cartState, "cartState");
   useEffect(() => {
     dispatch(getUserCart());
@@ -56,6 +59,9 @@ const Checkout = () => {
         quantity: item.quantity,
         color: item.color,
         price: item.price,
+        brands: item.productId?.brands,
+        catagory: item.productId?.catagory,
+        reedim: item.productId?.reedim,
       }))
     );
   }, [cartState]);
@@ -77,7 +83,6 @@ const Checkout = () => {
       setTimeout(() => {
         checkOutHandler();
       }, 200);
-      
     },
   });
 
@@ -121,7 +126,7 @@ const Checkout = () => {
       }
       const result = await axios.post(
         "http://localhost:5000/api/user/order/checkout",
-        {amount: subtotal },
+        { amount: subtotal },
         config
       );
       if (!result) {
@@ -210,7 +215,7 @@ const Checkout = () => {
           <div className="col-7">
             <div className="checkout-left-data">
               <div className="website-name pb-2 d-inline-block">
-                <h3>VibHub</h3>
+                <h3>VibeHub</h3>
               </div>
 
               <nav
@@ -382,9 +387,9 @@ const Checkout = () => {
                       <BiArrowBack className="fs-5  " />
                       Return to Cart
                     </Link>
-                    <Link to="/cart" className="button">
+                    {/* <Link to="/cart" className="button">
                       Continue to Shipping
-                    </Link>
+                    </Link> */}
                     <button to="/cart" className="button" type="submit">
                       Order Now
                     </button>
@@ -412,23 +417,41 @@ const Checkout = () => {
                               {item?.quantity}
                             </span>
                             <img
-                              src={item?.productId?.images[0]?.url}
+                               src={
+                                item?.productId?.images &&
+                                item?.productId?.images.length > 0
+                                  ? item?.productId?.images[0].url
+                                  : "/images/watch.jpg"
+                              }
                               height={75}
                               width={75}
                               alt="watch"
                             />
                           </div>
                           <div className="w-45">
-                            <h5 className="title"> {item?.productId?.title}</h5>
+                            <h5 className="title">
+                              {item?.productId?.brands}/{item?.productId?.title}
+                            </h5>
+                            <p className="mb-0">{item?.productId?.catagory} </p>
                             <p className="mb-0">{item?.productId?.color} </p>
                           </div>
                         </div>
-                        <div>
-                          <div>
+                        <div className="position-relative">
+                          <div className="">
                             <h5 className="flex-grow-1 price mb-0">
                               $ {item?.productId?.price * item?.quantity}
                             </h5>
                           </div>
+                          <span
+                            style={{
+                              top: "-26px",
+                              right: "-28px",
+                              backgroundColor: "#1e3da9",
+                            }}
+                            className="badge rounded-circle  text-white p-2 position-absolute"
+                          >
+                            <SlBadge /> {item?.productId?.reedim}
+                          </span>
                         </div>
                       </div>
                     );
@@ -449,6 +472,9 @@ const Checkout = () => {
                 <h4>Total</h4>
                 <h4>${subtotal + 100}</h4>
               </div>
+              <span>
+                * Reedim Will be added with your account after every order
+              </span>
             </div>
           </div>
         </div>

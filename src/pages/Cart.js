@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "../component/Container";
+import { BiArrowBack } from "react-icons/bi";
+import { FaBitcoin } from "react-icons/fa";
 import {
   deleteCartProduct,
   getUserCart,
@@ -14,6 +16,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const [productUpdateDetails, setProductUpdateDetails] = useState(null);
   const cartState = useSelector((state) => state?.auth?.getCartProduct);
+  console.log("cccc", cartState);
   const [subtotal, setSubtotal] = useState(0);
   useEffect(() => {
     dispatch(getUserCart());
@@ -44,7 +47,7 @@ const Cart = () => {
 
   useEffect(() => {
     // Calculate subtotal whenever cart items change
-    if (cartState &&  cartState) {
+    if (cartState && cartState) {
       const newSubtotal = cartState.reduce(
         (total, item) => total + item?.productId?.price * item?.quantity,
         0
@@ -64,13 +67,16 @@ const Cart = () => {
           <div className="col-12">
             <div className="cart-header d-flex justify-content-between align-items-center py-3">
               <h4 className="cart-col-1">Produuct</h4>
-              <h4 className="cart-col-2">Price</h4>
-              <h4 className="cart-col-3">Quantity</h4>
-              <h4 className="cart-col-4">Total</h4>
+              <h4 className="cart-col-2">Brands</h4>
+              <h4 className="cart-col-3">Catagory</h4>
+              <h4 className="cart-col-4">Price</h4>
+              <h4 className="cart-col-5">Coin</h4>
+              <h4 className="cart-col-6">Quantity</h4>
+              <h4 className="cart-col-7"> SubTotal</h4>
+              <h4 className="cart-col-8">Total</h4>
             </div>
             {cartState &&
               cartState?.map((item, index) => {
-                
                 return (
                   <div
                     key={index}
@@ -79,13 +85,18 @@ const Cart = () => {
                     <div className="cart-col-1 gap-15 d-flex align-items-center">
                       <div className="w-25">
                         <img
-                          src={item?.productId?.images[0]?.url}
-                          alt="watch"
-                          className="img-fluid"
+                          src={
+                            item?.productId?.images &&
+                            item?.productId?.images.length > 0
+                              ? item?.productId?.images[0].url
+                              : "/images/watch.jpg"
+                          }
+                          className="img-fluid mx-auto hoverable"
+                          alt="watch-02"
                         />
                       </div>
                       <div className="w-75">
-                        <p>{item?.productId?.title}</p>
+                        <p>Title: {item?.productId?.title}</p>
                         <div className="d-flex gap-3 align-item-center">
                           <p>Color:</p>
                           <li>
@@ -117,11 +128,32 @@ const Cart = () => {
                     <div className="cart-col-2">
                       <div>
                         <h5 className="price mb-0">
+                          {item?.productId?.brands}
+                        </h5>
+                      </div>
+                    </div>
+                    <div className="cart-col-3">
+                      <div>
+                        <h5 className="price mb-0">
+                          {item?.productId?.catagory}
+                        </h5>
+                      </div>
+                    </div>
+                    <div className="cart-col-4">
+                      <div>
+                        <h5 className="price mb-0">
                           $ {item?.productId?.price}
                         </h5>
                       </div>
                     </div>
-                    <div className="cart-col-2 ">
+                    <div className="cart-col-5">
+                      <div>
+                        <h5 className="price mb-0">
+                          <FaBitcoin /> {item?.productId?.reedim}
+                        </h5>
+                      </div>
+                    </div>
+                    <div className="cart-col-6 ">
                       <div>
                         <div>
                           <input
@@ -130,7 +162,6 @@ const Cart = () => {
                             name=""
                             min={1}
                             max={10}
-                            defaultValue={1}
                             value={
                               productUpdateDetails?.quantity
                                 ? productUpdateDetails?.quantity
@@ -148,10 +179,22 @@ const Cart = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="cart-col-4 ">
+                    <div className="cart-col-7 ">
                       <div className="d-flex align-items-center gap-15 mb-0">
                         <h5 className="price mb-0">
-                          $ { item?.productId?.price * item?.quantity}
+                          $ {item?.productId?.price * item?.quantity}
+                        </h5>
+                        <div
+                          onClick={() => {
+                            deleteAcartProduct(item?._id);
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div className="cart-col-8 ">
+                      <div className="d-flex align-items-center gap-15 mb-0">
+                        <h5 className="price mb-0">
+                          $ {item?.productId?.price * item?.quantity}
                         </h5>
                         <div
                           onClick={() => {
@@ -163,21 +206,28 @@ const Cart = () => {
                       </div>
                     </div>
                   </div>
+                  //   <div>
+                  //   <h5>
+                  //     SubTotal: ${subtotal} + <FaBitcoin />{" "}
+                  //     <span>{cartState?.productId?.reedim}</span>
+                  //   </h5>
+                  // </div>
                 );
               })}
           </div>
           <div className="col-12 py-2 mt-4">
             <div className="d-flex justify-content-between align-items-center">
-              <Link to="/product" className="button my-3">
-                Continue to Shipping
+              <Link to="/" className="d-flex gap-10 text-dark">
+                <BiArrowBack className="fs-5  " />
+                Return Home
               </Link>
-              <div>
-                <h5>SubTotal: ${subtotal}</h5>
-                <p>Taxes & Shipping Calculated at checkout</p>
-                <Link to="/checkout" className="button ">
-                  Checkout
-                </Link>
-              </div>
+              <p>Taxes & Shipping Calculated at checkout</p>
+              <Link to="/checkout" className="button ">
+                Checkout
+              </Link>
+              {/* <Link to="/product" className="button my-3">
+                Continue to Shipping
+              </Link> */}
             </div>
           </div>
         </div>

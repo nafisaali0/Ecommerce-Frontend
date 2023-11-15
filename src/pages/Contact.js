@@ -145,7 +145,7 @@ const Contact = () => {
                     </li>
                     <li className="d-flex align-items-center gap-15 mb-3">
                       <AiOutlineMail className="fs-5" />
-                      <a href="mailto:nanosoft@gmail.com">nanosoft@gmail.com</a>
+                      <a href="mailto:nanosoft@gmail.com">vibehub@gmail.com</a>
                     </li>
                     <li className="d-flex align-items-center gap-15 mb-3">
                       <AiOutlineInfoCircle className="fs-5" />

@@ -11,9 +11,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../features/products/productSlice";
 import { addToWishList } from "../features/products/productSlice";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 
 const Home = () => {
   const productState = useSelector((state) => state?.product?.product);
@@ -193,15 +191,13 @@ const Home = () => {
                           </div>
                           <div className="product-image">
                             <img
-                              src={item?.images[0]?.url}
-                              className="img-fluid  mx-auto hoverable"
-                              width={160}
+                              src={item?.images && item.images.length > 0 ? item.images[0].url : "/images/watch.jpg"}
+                              className="img-fluid mx-auto hoverable"
                               alt="watch"
                             />
                             <img
-                              src={item?.images[0]?.url}
-                              className="img-fluid  mx-auto hoverable"
-                              width={160}
+                               src={item?.images && item.images.length > 0 ? item.images[0].url : "/images/watch.jpg"}
+                              className="mx-auto hoverable"
                               alt="watch-02"
                             />
                           </div>
@@ -322,13 +318,14 @@ const Home = () => {
           </div>
         </Container>
 
-        <Container class1="special-wrapper home-wrapper-2 py-3">
+        <Container class1=" home-wrapper-2 py-3">
           <div className="row">
             <div className="col-12">
               <h3 className="blog-heading">Special products</h3>
             </div>
           </div>
-          <div className="row">
+          <div className="row ">
+            <div className="special-card-container"> 
             {Array.isArray(productState) &&
               productState?.map((item, index) => {
                 if (item.tags === "special") {
@@ -344,12 +341,14 @@ const Home = () => {
                         sold={item?.sold}
                         quantity={item?.quantity}
                         reedim={item?.reedim}
-                        imgUrl={item?.images[0]?.url}
+                        imgUrl={item?.images}
                       />
                     </div>
                   );
                 }
               })}
+            </div>
+            
           </div>
         </Container>
 
@@ -379,15 +378,13 @@ const Home = () => {
                           </div>
                           <div className="product-image">
                             <img
-                              src={item?.images[0]?.url}
-                              className="img-fluid  mx-auto hoverable"
-                              width={160}
+                              src={item?.images && item.images.length > 0 ? item.images[0].url : "/images/watch.jpg"}
+                              className="img-fluid mx-auto hoverable"
                               alt="watch"
                             />
                             <img
-                              src={item?.images[0]?.url}
-                              className="img-fluid  mx-auto hoverable"
-                              width={160}
+                               src={item?.images && item.images.length > 0 ? item.images[0].url : "/images/watch.jpg"}
+                              className="mx-auto hoverable"
                               alt="watch-02"
                             />
                           </div>
@@ -403,7 +400,7 @@ const Home = () => {
                             />
                             <p
                               dangerouslySetInnerHTML={{
-                                __html: item?.description,
+                                __html: item?.description ? `${item.description.slice(0, 30)}` : 'this is description',
                               }}
                             ></p>
                             <div className="d-flex justify-content-between align-items-center py-3">
@@ -541,7 +538,7 @@ const HomeContainer = styled.div`
   }
   .special-card-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
     gap: 15px;
   }
   /* .item-text {

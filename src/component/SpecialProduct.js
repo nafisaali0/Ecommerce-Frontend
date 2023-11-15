@@ -16,19 +16,23 @@ const SpecialProduct = (props) => {
   return (
     <div className="">
       <Link className="special-product-cart position-relative">
-        <div className="d-flex justify-content-between gap-4">
-          <div>
+        <div className="d-flex  align-items-center gap-4">
+          <div className="product-image ">
             <img
-              className="img-fluid d-block"
-              width={180}
-              src={imgUrl ? imgUrl : "images/watch.jpg"}
+             
+              src={
+                imgUrl && imgUrl.length > 0
+                  ? imgUrl[0].url
+                  : "/images/watch.jpg"
+              }
+              className="img-fluid mx-auto hoverable"
               alt="watch"
             />
           </div>
           <div>
             <div className="special-product-content">
-              <h6 className="brand">{brand}</h6>
-              <h5 className="title">{title}</h5>
+              <p className="brand mb-0">{brand}</p>
+              <h6 className="title">{title}</h6>
               <ReactStars
                 count={5}
                 value={totalrating}
@@ -37,21 +41,21 @@ const SpecialProduct = (props) => {
                 activeColor="#ffd700"
               />
               <div className="d-flex justify-content-between align-items-center py-3">
-                <p className="price">$ {price}</p>
-                <p className="price">Reedim Coin : {reedim ? reedim : 0}</p>
+                <p className="price mb-0">$ {price}</p>
+                <p className="price mb-0">Coin : {reedim ? reedim : 0}</p>
               </div>
 
               <div className="discount-till d-flex align-items-center gap-10">
                 <p className="mb-0 d-flex gap-10">
-                  <b>5 </b>Days
+                  <b>5</b>Days
                 </p>
                 <div
                   className="d-flex
                 align-items-center gap-10"
                 >
-                  <span className="badge rounded-circle p-3 bg-danger">1</span>:
-                  <span className="badge rounded-circle p-3 bg-danger">1</span>:
-                  <span className="badge rounded-circle p-3 bg-danger">1</span>
+                  <span className="badge rounded-circle p-2 bg-danger">1</span>:
+                  <span className="badge rounded-circle p-2 bg-danger">1</span>:
+                  <span className="badge rounded-circle p-2 bg-danger">1</span>
                 </div>
               </div>
               <div className="product-count my-3">

@@ -53,7 +53,7 @@ const Footer = () => {
                     className="text-white mt-2 d-block mb-0"
                     href="mailto:nanosoft@gmail.com"
                   >
-                    nanosoft@gmail.com
+                    vibehub@gmail.com
                   </a>
                   <div className="social-icons d-flex align-items-center gap-30 mt-4">
                     <Link className="text-white" to="">

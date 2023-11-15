@@ -35,42 +35,14 @@ function App() {
           <Route path="/product" element={<Store />} />
           <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/my-order" element={<Order />} />
-          <Route
-            path="/cart"
-            element={
-            
-                <Cart />
-            
-            }
-          />
-          <Route
-            path="/checkout"
-            element={
-             
-                <Checkout />
-              
-            }
-          />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<SingleBlog />} />
           <Route path="/compare-product" element={<CompareProduct />} />
-          <Route
-            path="/wishlist"
-            element={
-            
-                <Wishlist />
-              
-            }
-          />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/signup"
-            element={
-             
-                <Signup />
-           
-            }
-          />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
