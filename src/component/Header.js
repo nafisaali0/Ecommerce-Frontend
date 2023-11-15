@@ -108,7 +108,7 @@ const Header = () => {
                   </div>
                   <div>
                     <Link
-                      to={authState?.user === null ? "/login" : ""}
+                      to={authState?.user === null ? "/login" : "/profile"}
                       className="d-flex align-items-center gap-15 text-white"
                     >
                       <img src="/images/user.svg" alt="user" />

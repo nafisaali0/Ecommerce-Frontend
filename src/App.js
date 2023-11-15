@@ -10,6 +10,7 @@ import Order from "./pages/Orders";
 import Blog from "./pages/Blog";
 import CompareProduct from "./pages/CompareProduct";
 import Wishlist from "./pages/Wishlist";
+import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgetPassword from "./pages/ForgetPassword";
@@ -41,6 +42,7 @@ function App() {
           <Route path="/blog/:id" element={<SingleBlog />} />
           <Route path="/compare-product" element={<CompareProduct />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
